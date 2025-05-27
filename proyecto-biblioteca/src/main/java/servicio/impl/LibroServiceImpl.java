@@ -1,13 +1,7 @@
 package servicio.impl;
 
-import modelo.Libro;
-import repositorio.LibroRepository;
-import servicio.interfaces.LibroService;
-
-import java.util.List;
-
+@Service
 public class LibroServiceImpl implements LibroService {
-
     private final LibroRepository libroRepository;
 
     public LibroServiceImpl(LibroRepository libroRepository) {
@@ -15,22 +9,32 @@ public class LibroServiceImpl implements LibroService {
     }
 
     @Override
-    public Libro registrarLibro(Libro libro) {
-        return libroRepository.guardar(libro);
+    public Libro buscarPorIsbn(String isbn) {
+        return libroRepository.findByIsbn(isbn)
+                .orElseThrow(() -> new LibroNoEncontradoException(isbn));
     }
 
     @Override
-    public Libro obtenerLibro(Long id) {
-        return libroRepository.buscarPorId(id).orElse(null);
+    public List<Libro> obtenerTodos() {
+        return libroRepository.findAll();
     }
 
     @Override
-    public List<Libro> listarLibros() {
-        return libroRepository.listarTodos();
+    public Libro guardar(Libro libro) {
+        return libroRepository.save(libro);
     }
 
     @Override
-    public void eliminarLibro(Long id) {
-        libroRepository.eliminar(id);
+    public void eliminar(Long id) {
+        libroRepository.deleteById(id);
+    }
+
+    @Override
+    public Libro actualizar(Long id, Libro libro) {
+        if (!libroRepository.existsById(id)) {
+            throw new LibroNoEncontradoException(id);
+        }
+        libro.setId(id);
+        return libroRepository.save(libro);
     }
 }

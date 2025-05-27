@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UsuarioRepository {
-    Usuario guardar(Usuario usuario);
-    Optional<Usuario> buscarPorId(Long id);
-    List<Usuario> listarTodos();
-    void eliminar(Long id);
+    Usuario save(Usuario usuario);
+    Optional<Usuario> findById(Long id);
+    List<Usuario> findAll();
+    void deleteById(Long id);
+    boolean existsById(Long id);
 }
+

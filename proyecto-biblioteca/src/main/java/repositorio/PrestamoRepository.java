@@ -1,13 +1,12 @@
 package repositorio;
 
-import modelo.Prestamo;
-
 import java.util.List;
 import java.util.Optional;
 
 public interface PrestamoRepository {
-    Prestamo guardar(Prestamo prestamo);
-    Optional<Prestamo> buscarPorId(Long id);
-    List<Prestamo> listarTodos();
-    void eliminar(Long id);
-}
+    Prestamo save(Prestamo prestamo);
+    Optional<Prestamo> findById(Long id);
+    List<Prestamo> findAll();
+    void deleteById(Long id);
+    boolean existsById(Long id);
+

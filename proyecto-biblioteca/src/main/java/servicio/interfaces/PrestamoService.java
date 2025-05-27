@@ -8,5 +8,7 @@ public interface PrestamoService {
     Prestamo registrarPrestamo(Prestamo prestamo);
     Prestamo obtenerPrestamo(Long id);
     List<Prestamo> listarPrestamos();
-    void eliminarPrestamo(Long id);
+    Prestamo actualizarPrestamo(Long id, Prestamo prestamo);
+    boolean eliminarPrestamo(Long id);
 }
+

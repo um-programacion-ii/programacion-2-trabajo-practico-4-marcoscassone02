@@ -1,12 +1,9 @@
 package servicio.interfaces;
 
-import modelo.Libro;
-
-import java.util.List;
-
 public interface LibroService {
-    Libro registrarLibro(Libro libro);
-    Libro obtenerLibro(Long id);
-    List<Libro> listarLibros();
-    void eliminarLibro(Long id);
+    Libro buscarPorIsbn(String isbn);
+    List<Libro> obtenerTodos();
+    Libro guardar(Libro libro);
+    void eliminar(Long id);
+    Libro actualizar(Long id, Libro libro);
 }

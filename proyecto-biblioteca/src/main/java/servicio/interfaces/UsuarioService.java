@@ -8,5 +8,7 @@ public interface UsuarioService {
     Usuario registrarUsuario(Usuario usuario);
     Usuario obtenerUsuario(Long id);
     List<Usuario> listarUsuarios();
-    void eliminarUsuario(Long id);
+    Usuario actualizarUsuario(Long id, Usuario usuario);
+    boolean eliminarUsuario(Long id);
 }
+
